@@ -55,7 +55,7 @@ cd path\to\work-limits-monitor-windows
 
 1. проверяет Python и Codex CLI;
 2. копирует программу в `%LOCALAPPDATA%\WorkLimitsMonitor`;
-3. создаёт ярлык `Work limits` на рабочем столе;
+3. создаёт ярлык `Work Limits Monitor` на рабочем столе;
 4. добавляет программу в автозагрузку текущего пользователя Windows;
 5. запускает монитор.
 

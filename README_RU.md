@@ -1,5 +1,7 @@
 # Work Limits Monitor for Windows
 
+[![Windows smoke test](https://github.com/PavelNikolenko/work-limits-monitor-windows/actions/workflows/windows-smoke.yml/badge.svg)](https://github.com/PavelNikolenko/work-limits-monitor-windows/actions/workflows/windows-smoke.yml)
+
 Неофициальная компактная Windows-утилита для отображения лимитов Codex.
 
 [English version](README.md)

@@ -2,11 +2,11 @@
 
 ## Automated checks
 
-- [ ] Python normalization unit test passes
-- [ ] Windows installer smoke test passes
-- [ ] Installer creates application files
-- [ ] Installer creates desktop shortcut
-- [ ] Uninstaller removes installed files and shortcut
+- [x] Python normalization unit test passes
+- [x] Windows installer smoke test passes
+- [x] Installer creates application files
+- [x] Installer creates desktop shortcut
+- [x] Uninstaller removes installed files and shortcut
 
 ## Manual integration check
 
@@ -22,3 +22,6 @@
 - [ ] Update README status from release candidate to stable
 - [ ] Update SECURITY.md supported version
 - [ ] Publish GitHub Release `v0.1.0`
+
+
+Automated Windows smoke test passed in GitHub Actions on 2026-09-23.

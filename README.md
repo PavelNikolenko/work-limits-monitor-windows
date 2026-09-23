@@ -100,4 +100,6 @@ MIT. See [LICENSE](LICENSE).
 
 If this utility saves you repeated trips to the ChatGPT usage page, starring the repository helps other users find it.
 
-A voluntary support link can be added later.
+You can also support the project with a voluntary tip on Ko-fi:
+
+https://ko-fi.com/pavelnikolenko

@@ -59,6 +59,10 @@ Write-Host "  $DesktopLink"
 Write-Host "Startup shortcut:"
 Write-Host "  $StartupLink"
 Write-Host ""
-Write-Host "Launching..."
-Start-Process -FilePath $PythonW -ArgumentList ('"' + (Join-Path $InstallDir "WorkLimitMonitor.py") + '"') -WorkingDirectory $InstallDir
+if ($env:WLM_SKIP_LAUNCH -eq "1") {
+    Write-Host "Launch skipped by WLM_SKIP_LAUNCH=1."
+} else {
+    Write-Host "Launching..."
+    Start-Process -FilePath $PythonW -ArgumentList ('"' + (Join-Path $InstallDir "WorkLimitMonitor.py") + '"') -WorkingDirectory $InstallDir
+}
 Write-Host "Done."

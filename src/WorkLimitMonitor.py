@@ -60,7 +60,7 @@ def clamp(value):
 class LimitMonitor(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Work limits")
+        self.title("Work Limits Monitor")
         self.resizable(False, False)
         self.minsize(360, 0)
 

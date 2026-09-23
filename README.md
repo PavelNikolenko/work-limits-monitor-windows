@@ -2,6 +2,16 @@
 
 Unofficial lightweight Windows desktop monitor for Codex rate limits.
 
+[Русская версия](README_RU.md)
+
+> Status: `0.1.0-rc1` release candidate. The code is public and usable, but the standalone public installer should be tested on a clean Windows setup before the first stable release.
+
+## Why this exists
+
+When you use Codex or ChatGPT Work heavily, the practical question is often simple: **how much of the current 5-hour and weekly allowance is left?**
+
+Checking that manually means repeatedly opening the usage/limits page in ChatGPT. Work Limits Monitor keeps those values in a small Windows window that can stay visible while you work.
+
 It shows:
 
 - remaining 5-hour allowance;
@@ -19,7 +29,7 @@ The application starts the locally installed Codex CLI in app-server mode and re
 
 `account/rateLimits/read`
 
-The UI then displays the normalized values returned by that local service.
+The UI displays the normalized values returned by that local service.
 
 This is an unofficial community utility. The Codex app-server interface is not guaranteed to remain stable and may change in future Codex releases.
 
@@ -88,4 +98,6 @@ MIT. See [LICENSE](LICENSE).
 
 ## Support
 
-If this utility is useful to you, starring the repository helps others discover it. A funding link can be added by the maintainer later.
+If this utility saves you repeated trips to the ChatGPT usage page, starring the repository helps other users find it.
+
+A voluntary support link can be added later.

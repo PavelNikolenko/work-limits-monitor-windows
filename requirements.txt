@@ -1,0 +1,4 @@
+# No third-party Python packages are required.
+# Runtime requirements:
+# - Python 3.10+
+# - Codex CLI available in PATH

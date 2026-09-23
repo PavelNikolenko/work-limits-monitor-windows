@@ -55,7 +55,7 @@ The installer:
 
 1. verifies Python and Codex CLI;
 2. copies the application to `%LOCALAPPDATA%\WorkLimitsMonitor`;
-3. creates a desktop shortcut named `Work limits`;
+3. creates a desktop shortcut named `Work Limits Monitor`;
 4. adds the app to the current user's Windows Startup folder;
 5. launches the monitor.
 

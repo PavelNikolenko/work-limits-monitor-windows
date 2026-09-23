@@ -23,6 +23,12 @@ It shows:
 
 The app is intentionally small. It does not launch ChatGPT Work tasks, send prompts, modify conversations, or spend reset credits.
 
+## Interface preview
+
+![Work Limits Monitor interface preview](docs/work-limits-monitor-preview.png)
+
+*Preview generated from the public UI with sample values. Your actual percentages and reset times come from your local Codex session.*
+
 ## How it works
 
 The application starts the locally installed Codex CLI in app-server mode and reads rate-limit information using:

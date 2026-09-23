@@ -35,12 +35,12 @@ if ($LASTEXITCODE -ne 0) { throw "WorkUsage.py syntax check failed." }
 $Wsh = New-Object -ComObject WScript.Shell
 
 $Desktop = [Environment]::GetFolderPath("Desktop")
-$DesktopLink = Join-Path $Desktop "Work limits.lnk"
+$DesktopLink = Join-Path $Desktop "Work Limits Monitor.lnk"
 $Shortcut = $Wsh.CreateShortcut($DesktopLink)
 $Shortcut.TargetPath = $PythonW
 $Shortcut.Arguments = '"' + (Join-Path $InstallDir "WorkLimitMonitor.py") + '"'
 $Shortcut.WorkingDirectory = $InstallDir
-$Shortcut.Description = "Work / Codex rate-limit monitor"
+$Shortcut.Description = "Work Limits Monitor for Codex rate limits"
 $Shortcut.Save()
 
 $Startup = [Environment]::GetFolderPath("Startup")

@@ -28,6 +28,14 @@ The Luna Reserve row is a reserve-pool indicator. Its presence or remaining perc
 
 The app is intentionally small. It does not launch ChatGPT Work tasks, send prompts, modify conversations, or spend reset credits.
 
+## Long-term direction
+
+Work Limits Monitor starts as a lightweight Windows monitor for ChatGPT Work and Codex limits.
+
+The long-term goal is to help users allocate limited Work capacity between current activity and scheduled or otherwise time-sensitive tasks, using observed usage and reset patterns.
+
+Today, the project focuses on reliable visibility into available limits. Scheduling, forecasting, and resource-aware task coordination are future directions, not current features.
+
 ## What changed in 0.2.0
 
 The update came directly from real use. After the main allowance was exhausted and I moved to Luna Reserve, I realized the monitor had an obvious blind spot: it showed the standard 5-hour and weekly windows, but not the reserve I was actually relying on.

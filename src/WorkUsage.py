@@ -13,8 +13,8 @@ from pathlib import Path
 
 APP_NAME = "work_limits_monitor"
 APP_TITLE = "Work Limits Monitor"
-APP_VERSION = "0.1.0"
-SCHEMA_VERSION = "work-limits/0.1"
+APP_VERSION = "0.2.0"
+SCHEMA_VERSION = "work-limits/0.2"
 
 
 class WorkUsageError(RuntimeError):
@@ -58,10 +58,15 @@ def normalize(payload):
     if not isinstance(result, dict):
         raise WorkUsageError("Codex App Server returned no result object.")
 
-    rate_limits = result.get("rateLimits")
+    limits_by_id = result.get("rateLimitsByLimitId") or {}
+    rate_limits = limits_by_id.get("codex") if isinstance(limits_by_id, dict) else None
     if not isinstance(rate_limits, dict):
-        raise WorkUsageError("Codex App Server returned no rateLimits object.")
+        rate_limits = result.get("rateLimits")
+    if not isinstance(rate_limits, dict):
+        raise WorkUsageError("Codex App Server returned no Codex rateLimits object.")
 
+    luna = limits_by_id.get("base_model_inference") if isinstance(limits_by_id, dict) else None
+    luna_primary = luna.get("primary") if isinstance(luna, dict) else None
     reset_credits = result.get("rateLimitResetCredits") or {}
 
     return {
@@ -72,6 +77,10 @@ def normalize(payload):
         "rate_limit_reached_type": rate_limits.get("rateLimitReachedType"),
         "five_hour": _window(rate_limits.get("primary")),
         "weekly": _window(rate_limits.get("secondary")),
+        "luna_reserve_weekly": _window(luna_primary),
+        "luna_available": isinstance(luna, dict),
+        "luna_limit_name": luna.get("limitName") if isinstance(luna, dict) else None,
+        "luna_model": luna.get("normalModelSlug") if isinstance(luna, dict) else None,
         "reset_credits_available": (
             reset_credits.get("availableCount")
             if isinstance(reset_credits, dict)
@@ -174,7 +183,14 @@ def get_usage(timeout=15.0):
         )
         _wait(q, 1, timeout)
         _send(proc, {"method": "initialized", "params": {}})
-        _send(proc, {"method": "account/rateLimits/read", "id": 2})
+        _send(
+            proc,
+            {
+                "method": "account/rateLimits/read",
+                "id": 2,
+                "params": {"supportsLunaReserve": True},
+            },
+        )
         return normalize(_wait(q, 2, timeout))
     finally:
         try:

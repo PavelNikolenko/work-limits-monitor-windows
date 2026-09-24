@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import json
 import queue
-import sys
 import threading
 import time
 import tkinter as tk
@@ -13,10 +12,9 @@ from tkinter import ttk
 
 from WorkUsage import get_usage
 
-APP_VERSION = "0.1.0"
+APP_VERSION = "0.2.0"
 REFRESH_SECONDS = 30
 
-APP_DIR = Path(__file__).resolve().parent
 STATE_DIR = Path.home() / ".work-limits-monitor"
 STATE_PATH = STATE_DIR / "state.json"
 
@@ -61,8 +59,7 @@ class LimitMonitor(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Work Limits Monitor")
-        self.resizable(False, False)
-        self.minsize(360, 0)
+        self.resizable(False, True)
 
         self.messages = queue.Queue()
         self.refresh_in_progress = False
@@ -71,6 +68,15 @@ class LimitMonitor(tk.Tk):
 
         self._load_state()
         self._build_ui()
+
+        self.update_idletasks()
+        required_height = self.winfo_reqheight()
+        current_height = self.winfo_height()
+        current_width = max(360, self.winfo_width())
+        self.minsize(360, required_height)
+        if current_height < required_height:
+            self.geometry(f"{current_width}x{required_height}")
+
         self.attributes("-topmost", bool(self.topmost_var.get()))
 
         self.protocol("WM_DELETE_WINDOW", self._on_close)
@@ -82,18 +88,14 @@ class LimitMonitor(tk.Tk):
         outer = ttk.Frame(self, padding=12)
         outer.grid(row=0, column=0, sticky="nsew")
 
-        ttk.Label(
-            outer,
-            text="Work / Codex limits",
-            font=("Segoe UI", 11, "bold"),
-        ).grid(row=0, column=0, columnspan=3, sticky="w", pady=(0, 8))
+        ttk.Label(outer, text="Work / Codex limits", font=("Segoe UI", 11, "bold")).grid(
+            row=0, column=0, columnspan=3, sticky="w", pady=(0, 8)
+        )
 
         ttk.Label(outer, text="5-hour").grid(row=1, column=0, sticky="w")
         self.five_label = ttk.Label(outer, text="--", font=("Segoe UI", 12, "bold"))
         self.five_label.grid(row=1, column=2, sticky="e")
-        self.five_bar = ttk.Progressbar(
-            outer, orient="horizontal", length=300, mode="determinate", maximum=100
-        )
+        self.five_bar = ttk.Progressbar(outer, orient="horizontal", length=300, mode="determinate", maximum=100)
         self.five_bar.grid(row=2, column=0, columnspan=3, sticky="ew", pady=(3, 2))
         self.five_reset = ttk.Label(outer, text="Reset in: --")
         self.five_reset.grid(row=3, column=0, columnspan=3, sticky="w", pady=(0, 9))
@@ -101,40 +103,35 @@ class LimitMonitor(tk.Tk):
         ttk.Label(outer, text="Weekly").grid(row=4, column=0, sticky="w")
         self.week_label = ttk.Label(outer, text="--", font=("Segoe UI", 12, "bold"))
         self.week_label.grid(row=4, column=2, sticky="e")
-        self.week_bar = ttk.Progressbar(
-            outer, orient="horizontal", length=300, mode="determinate", maximum=100
-        )
+        self.week_bar = ttk.Progressbar(outer, orient="horizontal", length=300, mode="determinate", maximum=100)
         self.week_bar.grid(row=5, column=0, columnspan=3, sticky="ew", pady=(3, 2))
         self.week_reset = ttk.Label(outer, text="Reset in: --")
         self.week_reset.grid(row=6, column=0, columnspan=3, sticky="w", pady=(0, 9))
 
-        ttk.Separator(outer, orient="horizontal").grid(
-            row=7, column=0, columnspan=3, sticky="ew", pady=(1, 8)
-        )
+        ttk.Label(outer, text="Luna Reserve").grid(row=7, column=0, sticky="w")
+        self.luna_label = ttk.Label(outer, text="--", font=("Segoe UI", 12, "bold"))
+        self.luna_label.grid(row=7, column=2, sticky="e")
+        self.luna_bar = ttk.Progressbar(outer, orient="horizontal", length=300, mode="determinate", maximum=100)
+        self.luna_bar.grid(row=8, column=0, columnspan=3, sticky="ew", pady=(3, 2))
+        self.luna_reset = ttk.Label(outer, text="Reset in: --")
+        self.luna_reset.grid(row=9, column=0, columnspan=3, sticky="w", pady=(0, 9))
+
+        ttk.Separator(outer, orient="horizontal").grid(row=10, column=0, columnspan=3, sticky="ew", pady=(1, 8))
 
         self.credits_label = ttk.Label(outer, text="Reset credits: --")
-        self.credits_label.grid(row=8, column=0, columnspan=3, sticky="w")
+        self.credits_label.grid(row=11, column=0, columnspan=3, sticky="w")
         self.plan_label = ttk.Label(outer, text="Plan: --")
-        self.plan_label.grid(row=9, column=0, columnspan=3, sticky="w")
+        self.plan_label.grid(row=12, column=0, columnspan=3, sticky="w")
         self.updated_label = ttk.Label(outer, text="Updated: --")
-        self.updated_label.grid(row=10, column=0, columnspan=3, sticky="w")
-        self.status_label = ttk.Label(
-            outer, text=f"Auto-refresh: every {REFRESH_SECONDS}s"
-        )
-        self.status_label.grid(row=11, column=0, columnspan=3, sticky="w", pady=(3, 8))
+        self.updated_label.grid(row=13, column=0, columnspan=3, sticky="w")
+        self.status_label = ttk.Label(outer, text=f"Auto-refresh: every {REFRESH_SECONDS}s")
+        self.status_label.grid(row=14, column=0, columnspan=3, sticky="w", pady=(3, 8))
 
-        ttk.Button(outer, text="Refresh", command=self.refresh_now).grid(
-            row=12, column=0, sticky="w"
+        ttk.Button(outer, text="Refresh", command=self.refresh_now).grid(row=15, column=0, sticky="w")
+        ttk.Checkbutton(outer, text="Always on top", variable=self.topmost_var, command=self._toggle_topmost).grid(
+            row=15, column=1, sticky="e", padx=(12, 6)
         )
-        ttk.Checkbutton(
-            outer,
-            text="Always on top",
-            variable=self.topmost_var,
-            command=self._toggle_topmost,
-        ).grid(row=12, column=1, sticky="e", padx=(12, 6))
-        ttk.Button(outer, text="Close", command=self._on_close).grid(
-            row=12, column=2, sticky="e"
-        )
+        ttk.Button(outer, text="Close", command=self._on_close).grid(row=15, column=2, sticky="e")
 
     def _load_state(self):
         try:
@@ -152,14 +149,7 @@ class LimitMonitor(tk.Tk):
         try:
             STATE_DIR.mkdir(parents=True, exist_ok=True)
             STATE_PATH.write_text(
-                json.dumps(
-                    {
-                        "geometry": self.geometry(),
-                        "topmost": bool(self.topmost_var.get()),
-                    },
-                    ensure_ascii=False,
-                    indent=2,
-                ),
+                json.dumps({"geometry": self.geometry(), "topmost": bool(self.topmost_var.get())}, ensure_ascii=False, indent=2),
                 encoding="utf-8",
             )
         except Exception:
@@ -199,15 +189,16 @@ class LimitMonitor(tk.Tk):
     def _apply_usage(self, usage):
         five = usage.get("five_hour") or {}
         weekly = usage.get("weekly") or {}
+        luna = usage.get("luna_reserve_weekly") or {}
 
         self.five_label.configure(text=fmt_percent(five.get("left_percent")))
         self.week_label.configure(text=fmt_percent(weekly.get("left_percent")))
+        self.luna_label.configure(text=fmt_percent(luna.get("left_percent")))
         self.five_bar["value"] = clamp(five.get("left_percent"))
         self.week_bar["value"] = clamp(weekly.get("left_percent"))
+        self.luna_bar["value"] = clamp(luna.get("left_percent"))
 
-        self.credits_label.configure(
-            text=f"Reset credits: {usage.get('reset_credits_available', '--')}"
-        )
+        self.credits_label.configure(text=f"Reset credits: {usage.get('reset_credits_available', '--')}")
         self.plan_label.configure(text=f"Plan: {usage.get('plan_type') or '--'}")
 
         observed = usage.get("observed_at_local")
@@ -224,12 +215,10 @@ class LimitMonitor(tk.Tk):
         if self.latest_usage:
             five = self.latest_usage.get("five_hour") or {}
             weekly = self.latest_usage.get("weekly") or {}
-            self.five_reset.configure(
-                text=f"Reset in: {fmt_countdown(five.get('resets_at_unix'))}"
-            )
-            self.week_reset.configure(
-                text=f"Reset in: {fmt_countdown(weekly.get('resets_at_unix'))}"
-            )
+            luna = self.latest_usage.get("luna_reserve_weekly") or {}
+            self.five_reset.configure(text=f"Reset in: {fmt_countdown(five.get('resets_at_unix'))}")
+            self.week_reset.configure(text=f"Reset in: {fmt_countdown(weekly.get('resets_at_unix'))}")
+            self.luna_reset.configure(text=f"Reset in: {fmt_countdown(luna.get('resets_at_unix'))}")
         self.after(1000, self._tick)
 
     def _on_close(self):
@@ -241,7 +230,6 @@ class LimitMonitor(tk.Tk):
             if self.winfo_exists():
                 self.refresh_now()
                 self.after(REFRESH_SECONDS * 1000, schedule)
-
         self.after(REFRESH_SECONDS * 1000, schedule)
 
 

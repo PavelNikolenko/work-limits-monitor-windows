@@ -40,7 +40,7 @@ See [RELEASE_NOTES_0.2.0.md](RELEASE_NOTES_0.2.0.md) and [CHANGELOG.md](CHANGELO
 
 ![Work Limits Monitor interface preview](docs/work-limits-monitor-preview.png)
 
-*The preview may show an earlier layout. Actual values and available rows come from your local Codex session.*
+*Preview of version 0.2.0 with sample values. Actual values and available rows come from your local Codex session.*
 
 ## How it works
 

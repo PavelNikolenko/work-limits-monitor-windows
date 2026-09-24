@@ -38,7 +38,7 @@ Work Limits Monitor держит лимиты в небольшом окне Win
 
 ## Вид интерфейса
 
-![Предпросмотр интерфейса Work Limits Monitor](docs/work-limits-monitor-preview.png)
+![Предпросмотр интерфейса Work Limits Monitor](docs/work-limits-monitor-preview.svg)
 
 *Предпросмотр версии 0.2.0 с тестовыми значениями. Фактические значения и доступные строки берутся из вашей локальной сессии Codex.*
 

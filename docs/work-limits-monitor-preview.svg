@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="480" viewBox="0 0 420 480">
+  <rect width="420" height="480" fill="#111"/>
+  <rect x="18" y="18" width="384" height="444" rx="2" fill="#f0f0f0" stroke="#777"/>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#1f1f1f">
+    <text x="34" y="48" font-size="18" font-weight="700">Work / Codex limits</text>
+
+    <text x="34" y="80" font-size="15">5-hour</text>
+    <text x="366" y="80" font-size="16" font-weight="700" text-anchor="end">72%</text>
+    <rect x="34" y="90" width="332" height="16" fill="#d9d9d9" stroke="#a6a6a6"/>
+    <rect x="35" y="91" width="238" height="14" fill="#4f7897"/>
+    <text x="34" y="126" font-size="14">Reset in: 4h 19m</text>
+
+    <text x="34" y="158" font-size="15">Weekly</text>
+    <text x="366" y="158" font-size="16" font-weight="700" text-anchor="end">80%</text>
+    <rect x="34" y="168" width="332" height="16" fill="#d9d9d9" stroke="#a6a6a6"/>
+    <rect x="35" y="169" width="264" height="14" fill="#4f7897"/>
+    <text x="34" y="204" font-size="14">Reset in: 6d 18h 11m</text>
+
+    <text x="34" y="236" font-size="15">Luna Reserve</text>
+    <text x="366" y="236" font-size="16" font-weight="700" text-anchor="end">35%</text>
+    <rect x="34" y="246" width="332" height="16" fill="#d9d9d9" stroke="#a6a6a6"/>
+    <rect x="35" y="247" width="116" height="14" fill="#4f7897"/>
+    <text x="34" y="282" font-size="14">Reset in: 2d 6h 24m</text>
+
+    <line x1="34" y1="300" x2="366" y2="300" stroke="#aaa"/>
+
+    <text x="34" y="326" font-size="14">Reset credits: 2</text>
+    <text x="34" y="348" font-size="14">Plan: plus</text>
+    <text x="34" y="370" font-size="14">Updated: 23:36:39</text>
+    <text x="34" y="392" font-size="14">Auto-refresh: every 30s</text>
+
+    <rect x="34" y="412" width="78" height="30" fill="#efefef" stroke="#aaa"/>
+    <text x="73" y="432" font-size="13" text-anchor="middle">Refresh</text>
+
+    <rect x="150" y="419" width="13" height="13" fill="#4f7897" stroke="#777"/>
+    <path d="M153 425 l3 3 l6 -7" fill="none" stroke="white" stroke-width="2"/>
+    <text x="170" y="431" font-size="13">Always on top</text>
+
+    <rect x="304" y="412" width="62" height="30" fill="#efefef" stroke="#aaa"/>
+    <text x="335" y="432" font-size="13" text-anchor="middle">Close</text>
+  </g>
+</svg>

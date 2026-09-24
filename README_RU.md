@@ -1,8 +1,9 @@
 # Work Limits Monitor for Windows
 
 [![Windows smoke test](https://github.com/PavelNikolenko/work-limits-monitor-windows/actions/workflows/windows-smoke.yml/badge.svg)](https://github.com/PavelNikolenko/work-limits-monitor-windows/actions/workflows/windows-smoke.yml)
+[![Download latest release](https://img.shields.io/github/v/release/PavelNikolenko/work-limits-monitor-windows?label=Download%20latest%20release)](https://github.com/PavelNikolenko/work-limits-monitor-windows/releases/latest)
 
-Неофициальная компактная Windows-утилита для отображения лимитов Codex.
+Неофициальная компактная Windows-утилита для отображения лимитов ChatGPT Work и Codex, включая Luna Reserve.
 
 [English version](README.md)
 
@@ -49,6 +50,12 @@ Work Limits Monitor начинается как компактный Windows-м�
 ![Предпросмотр интерфейса Work Limits Monitor](docs/work-limits-monitor-preview.svg)
 
 *Предпросмотр версии 0.2.0 с тестовыми значениями. Фактические значения и доступные строки берутся из вашей локальной сессии Codex.*
+
+### Помогите протестировать на Windows
+
+**Используете ChatGPT Work или Codex на Windows?** Попробуйте [последний выпуск](https://github.com/PavelNikolenko/work-limits-monitor-windows/releases/latest) и сообщите, корректно ли на вашем плане определяются 5-часовой, недельный лимиты и Luna Reserve.
+
+Сообщения об ошибках и конкретные предложения по функциям можно оставлять через [GitHub Issues](https://github.com/PavelNikolenko/work-limits-monitor-windows/issues/new/choose). Если утилита оказалась полезной, звезда GitHub поможет другим пользователям Windows найти проект.
 
 ## Как это работает
 

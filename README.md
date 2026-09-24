@@ -1,8 +1,9 @@
 # Work Limits Monitor for Windows
 
 [![Windows smoke test](https://github.com/PavelNikolenko/work-limits-monitor-windows/actions/workflows/windows-smoke.yml/badge.svg)](https://github.com/PavelNikolenko/work-limits-monitor-windows/actions/workflows/windows-smoke.yml)
+[![Download latest release](https://img.shields.io/github/v/release/PavelNikolenko/work-limits-monitor-windows?label=Download%20latest%20release)](https://github.com/PavelNikolenko/work-limits-monitor-windows/releases/latest)
 
-Unofficial lightweight Windows desktop monitor for Codex rate limits.
+Unofficial lightweight Windows desktop monitor for ChatGPT Work and Codex limits, including Luna Reserve.
 
 [Русская версия](README_RU.md)
 
@@ -49,6 +50,12 @@ See [RELEASE_NOTES_0.2.0.md](RELEASE_NOTES_0.2.0.md) and [CHANGELOG.md](CHANGELO
 ![Work Limits Monitor interface preview](docs/work-limits-monitor-preview.svg)
 
 *Preview of version 0.2.0 with sample values. Actual values and available rows come from your local Codex session.*
+
+### Help test it on Windows
+
+**Using ChatGPT Work or Codex on Windows?** Try the [latest release](https://github.com/PavelNikolenko/work-limits-monitor-windows/releases/latest) and let me know whether the 5-hour, weekly, and Luna Reserve limits are detected correctly on your plan.
+
+Bug reports and focused feature suggestions are welcome through [GitHub Issues](https://github.com/PavelNikolenko/work-limits-monitor-windows/issues/new/choose). If the tool is useful, a GitHub star helps other Windows users discover it.
 
 ## How it works
 
